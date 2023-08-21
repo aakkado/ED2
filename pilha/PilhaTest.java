@@ -62,4 +62,12 @@ class PilhaTest {
 		
 	}
 
+	@Test
+	void testTopPilhaVazia() {
+
+		Pilha pilha = new Pilha();
+		assertThrows(RuntimeException.class, ()-> pilha.top());
+
+	}
+
 }

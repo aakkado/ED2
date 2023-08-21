@@ -2,37 +2,43 @@ package pilhaNomes;
 
 import pilha.Pilha;
 
-public class PilhaNomes implements Comparable<PilhaNomes>{
+public class PilhaNomes{
 
-    Pilha pilhaNomes = new Pilha();
+    private Pilha pilhaNomes = new Pilha();
 
-    public boolean ehVazia(){
-        return pilhaNomes.pegaTamanho() == 0;
-    }
 
-    public void insereNome(String nome){
-        if(ehVazia()){
+    public void push(String nome) {
+        if (pilhaNomes.pegaTamanho() == 0) {
             pilhaNomes.push(nome);
-        }else{
-            String nomeTopo = (String) pilhaNomes.top();
-            if(nome.compareTo(nomeTopo) < 0){
+        } else {
+            if (nome.equals((String) pilhaNomes.top())) {
+                System.out.println("Nome já existe na pilha");
+            } else {
+                Pilha pilhaAuxiliar = new Pilha();
+                while (nome.compareTo((String) pilhaNomes.top()) < 0) {
+                    pilhaAuxiliar.push(pilhaNomes.top());
+                    pilhaNomes.pop();
+                    if (pilhaNomes.pegaTamanho() == 0) {
+                        break;
+                    }
+                }
                 pilhaNomes.push(nome);
-            }else if(nome.compareTo(nomeTopo) > 0){
-                pilhaNomes.push(nome);
+                while (pilhaAuxiliar.pegaTamanho() != 0) {
+                    pilhaNomes.push(pilhaAuxiliar.top());
+                    pilhaAuxiliar.pop();
+                }
             }
         }
     }
 
-    public void exibeTopo(){
-        String nome = (String) pilhaNomes.top();
-        System.out.println(nome);
+
+    public void pop() {
+        pilhaNomes.pop();
+    }
+
+    public Object top() {
+        return pilhaNomes.top();
     }
 
 
-    @Override
-    public int compareTo(PilhaNomes outroNome) {
-        String nome1 = (String) pilhaNomes.top();
-        String nome2 = (String) outroNome.pilhaNomes.top();
-        return nome1.compareTo(nome2);
-    }
 }

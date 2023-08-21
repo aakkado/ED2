@@ -10,23 +10,68 @@ public class PilhaNomesTeste {
     PilhaNomes pilhaNomes = new PilhaNomes();
 
     @Test
-    void testePilhaNomesVazia() {
-        assertTrue(pilhaNomes.ehVazia());
+    void testeOrganizarNomes() {
+        pilhaNomes.push("João");
+        pilhaNomes.push("Maria");
+        pilhaNomes.push("José");
+        pilhaNomes.push("Ana");
+        pilhaNomes.push("Carlos");
+
+        assertEquals("Maria", pilhaNomes.top());
     }
 
     @Test
-    void testeInserirPilhaVazia() {
-        pilhaNomes.insereNome("fernando");
-        assertFalse(pilhaNomes.ehVazia());
-        assertEquals("fernando", pilhaNomes.pilhaNomes.top());
+    void testeOrganizarNomesUmElemento(){
+        pilhaNomes.push("João");
+
+        assertEquals("João", pilhaNomes.top());
     }
 
     @Test
-    void testeInserirPilhaVariosElementos() {
-        pilhaNomes.insereNome("fernando");
-        pilhaNomes.insereNome("marcos");
-        pilhaNomes.insereNome("ana");
-        assertFalse(pilhaNomes.ehVazia());
-        assertEquals("ana", pilhaNomes.pilhaNomes.top());
+    void testeOrganizarNomesAlfabeto(){
+        pilhaNomes.push("Ana");
+        pilhaNomes.push("Bia");
+        pilhaNomes.push("Carla");
+        pilhaNomes.push("Daniel");
+        pilhaNomes.push("Eduardo");
+        pilhaNomes.push("Fernanda");
+        pilhaNomes.push("Gustavo");
+        pilhaNomes.push("Hugo");
+        pilhaNomes.push("Igor");
+        pilhaNomes.push("João");
+        pilhaNomes.push("Kátia");
+        pilhaNomes.push("Ziraldo");
+        pilhaNomes.push("Xuxa");
+        pilhaNomes.push("Wagner");
+        pilhaNomes.push("Vitor");
+        pilhaNomes.push("Yuri");
+        pilhaNomes.push("Ulisses");
+        pilhaNomes.push("Tatiana");
+        pilhaNomes.push("Sandra");
+        pilhaNomes.push("Ricardo");
+        pilhaNomes.push("Quiteria");
+        pilhaNomes.push("Paulo");
+        pilhaNomes.push("Oscar");
+        pilhaNomes.push("Natalia");
+        pilhaNomes.push("Mariana");
+        pilhaNomes.push("Luis");
+
+        assertEquals("Ziraldo", pilhaNomes.top());
+    }
+
+    @Test
+    void popPilhaVazia() {;
+
+        assertThrows(RuntimeException.class, () -> {
+            pilhaNomes.pop();
+        });
+    }
+
+    @Test
+    void topPilhaVazia() {;
+
+        assertThrows(RuntimeException.class, () -> {
+            pilhaNomes.top();
+        });
     }
 }
