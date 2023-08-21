@@ -60,6 +60,18 @@ public class PilhaNomesTeste {
     }
 
     @Test
+    void testeOrganizarNomesRepetidos(){
+
+        pilhaNomes.push("Ana");
+        pilhaNomes.push("Paulo");
+        pilhaNomes.push("Ana");
+
+        assertEquals("Paulo", pilhaNomes.top());
+        assertEquals(2, pilhaNomes.pegaTamanho());
+
+    }
+
+    @Test
     void popPilhaVazia() {;
 
         assertThrows(RuntimeException.class, () -> {
